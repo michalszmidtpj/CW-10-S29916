@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CW_10_S29916.Models;
 
-public partial class Client_Trip
+[Table("Client_Trip")]
+public partial class ClientTrip
 {
     public int IdClient { get; set; }
 

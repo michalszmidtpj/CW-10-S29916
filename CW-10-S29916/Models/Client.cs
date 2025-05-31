@@ -17,5 +17,5 @@ public partial class Client
 
     public string Pesel { get; set; } = null!;
 
-    public virtual ICollection<Client_Trip> Client_Trips { get; set; } = new List<Client_Trip>();
+    public virtual ICollection<ClientTrip> Client_Trips { get; set; } = new List<ClientTrip>();
 }

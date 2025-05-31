@@ -17,7 +17,7 @@ public partial class Trip
 
     public int MaxPeople { get; set; }
 
-    public virtual ICollection<Client_Trip> Client_Trips { get; set; } = new List<Client_Trip>();
+    public virtual ICollection<ClientTrip> ClientTrips { get; set; } = new List<ClientTrip>();
 
     public virtual ICollection<Country> IdCountries { get; set; } = new List<Country>();
 }

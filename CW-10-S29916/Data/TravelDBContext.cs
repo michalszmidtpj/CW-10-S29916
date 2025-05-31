@@ -4,28 +4,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CW_10_S29916.Models;
 
-public partial class TravelDBContext : DbContext
+public partial class TravelDbContext : DbContext
 {
-    public TravelDBContext()
+    public TravelDbContext()
     {
     }
 
-    public TravelDBContext(DbContextOptions<TravelDBContext> options)
+    public TravelDbContext(DbContextOptions<TravelDbContext> options)
         : base(options)
     {
     }
 
     public virtual DbSet<Client> Clients { get; set; }
 
-    public virtual DbSet<Client_Trip> Client_Trips { get; set; }
+    public virtual DbSet<ClientTrip> Client_Trips { get; set; }
 
     public virtual DbSet<Country> Countries { get; set; }
 
     public virtual DbSet<Trip> Trips { get; set; }
 
-    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    //
-    //     => optionsBuilder.UseSqlServer(optionsBuilder.Configuration.GetConnectionString("Default"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -42,7 +39,7 @@ public partial class TravelDBContext : DbContext
             entity.Property(e => e.Telephone).HasMaxLength(120);
         });
 
-        modelBuilder.Entity<Client_Trip>(entity =>
+        modelBuilder.Entity<ClientTrip>(entity =>
         {
             entity.HasKey(e => new { e.IdClient, e.IdTrip }).HasName("Client_Trip_pk");
 
@@ -56,7 +53,7 @@ public partial class TravelDBContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Table_5_Client");
 
-            entity.HasOne(d => d.IdTripNavigation).WithMany(p => p.Client_Trips)
+            entity.HasOne(d => d.IdTripNavigation).WithMany(p => p.ClientTrips)
                 .HasForeignKey(d => d.IdTrip)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("Table_5_Trip");
